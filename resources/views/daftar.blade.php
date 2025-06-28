@@ -8,8 +8,9 @@
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
   <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Formulir Pendaftaran Servis</h2>
-    <form action="proses.php" method="POST" class="space-y-4">
-      
+    <form action="/simpan" method="POST" class="space-y-4">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
       <div>
         <label for="nama" class="block text-sm font-medium text-gray-700">Nama</label>
         <input type="text" id="nama" name="nama" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
@@ -21,8 +22,8 @@
       </div>
 
       <div>
-        <label for="plat" class="block text-sm font-medium text-gray-700">Plat Nomor</label>
-        <input type="text" id="plat" name="plat" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+        <label for="plat_nomor" class="block text-sm font-medium text-gray-700">Plat Nomor</label>
+        <input type="text" id="plat_nomor" name="plat_nomor" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
       </div>
 
       <div>
