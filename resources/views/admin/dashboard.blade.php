@@ -3,63 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin Bengkel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-        <a class="navbar-brand" href="#">Bengkel Admin</a>
-        <div class="ms-auto">
-            <a href="{{ route('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
-        </div>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
+        <a href="#" class="text-xl font-bold">Bengkel Admin</a>
+        <a href="{{ route('logout') }}" class="text-sm border border-white px-3 py-1 rounded hover:bg-white hover:text-gray-800 transition">Logout</a>
     </nav>
 
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>Dashboard Servis Kendaraan</h2>
-            <a href="{{ url('/daftar') }}" class="btn btn-success">+ Tambah Data</a>
+    <!-- Container -->
+    <div class="max-w-6xl mx-auto mt-6 px-4">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold">Dashboard Servis Kendaraan</h2>
+            <a href="{{ url('/daftar') }}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">+ Tambah Data</a>
         </div>
 
-        <table class="table table-bordered">
-            <thead class="table-dark">
-                <tr>
-                    <th>Nama</th>
-                    <th>No HP</th>
-                    <th>Plat Nomor</th>
-                    <th>Keluhan</th>
-                    <th>Tanggal</th>
-                    <th>Jam</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($kendaraans as $item)
-                <tr>
-                    <td>{{ $item->nama }}</td>
-                    <td>{{ $item->nohp }}</td>
-                    <td>{{ $item->plat_nomor }}</td>
-                    <td>{{ $item->keluhan }}</td>
-                    <td>{{ $item->tanggal }}</td>
-                    <td>{{ $item->jam }}</td>
-                    <td>
-                        <a href="{{ url('/admin/edit/'.$item->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ url('/admin/delete/'.$item->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="7" class="text-center">Belum ada data servis</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
+        <!-- Table -->
+        <div class="overflow-x-auto bg-white shadow rounded">
+            <table class="min-w-full divide-y divide-gray-200 text-sm">
+                <thead class="bg-gray-800 text-white">
+                    <tr>
+                        <th class="px-4 py-2 text-left">Nama</th>
+                        <th class="px-4 py-2 text-left">No HP</th>
+                        <th class="px-4 py-2 text-left">Plat Nomor</th>
+                        <th class="px-4 py-2 text-left">Keluhan</th>
+                        <th class="px-4 py-2 text-left">Tanggal</th>
+                        <th class="px-4 py-2 text-left">Jam</th>
+                        <th class="px-4 py-2 text-left">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    @forelse ($kendaraans as $item)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-4 py-2">{{ $item->nama }}</td>
+                        <td class="px-4 py-2">{{ $item->nohp }}</td>
+                        <td class="px-4 py-2">{{ $item->plat_nomor }}</td>
+                        <td class="px-4 py-2">{{ $item->keluhan }}</td>
+                        <td class="px-4 py-2">{{ $item->tanggal }}</td>
+                        <td class="px-4 py-2">{{ $item->jam }}</td>
+                        <td class="px-4 py-2 space-x-2">
+                            <a href="{{ url('/admin/edit/'.$item->id) }}" class="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500">Edit</a>
+                            <form action="{{ url('/admin/delete/'.$item->id) }}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button onclick="return confirm('Yakin ingin menghapus data ini?')" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="7" class="text-center px-4 py-3">Belum ada data servis</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <footer class="bg-light text-center py-3 mt-5">
+    <!-- Footer -->
+    <footer class="text-center text-sm text-gray-600 py-4 mt-10">
         &copy; {{ date('Y') }} Bengkel Cahaya Motor. All Rights Reserved.
     </footer>
+
 </body>
 </html>
