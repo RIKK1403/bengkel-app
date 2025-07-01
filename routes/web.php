@@ -16,6 +16,7 @@ Route::get('/login', [LoginController::class, 'formLogin'])->name('form.login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/dashboard', function () {return redirect('/admin/dashboard');});
 Route::get('/admin/dashboard', [adminController::class, 'index'])->name('admin.dashboard')->middleware('auth');
 Route::get('/admin/edit/{id}', [adminController::class, 'edit'])->name('admin.edit')->middleware('auth');
 Route::put('/admin/update/{id}', [adminController::class, 'update'])->name('admin.update')->middleware('auth');
