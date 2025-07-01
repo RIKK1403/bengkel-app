@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
         <a class="navbar-brand" href="#">Bengkel Admin</a>
         <div class="ms-auto">
-            <a href="#" class="btn btn-outline-light btn-sm">Logout</a>
+            <a href="{{ route('logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
         </div>
     </nav>
 
